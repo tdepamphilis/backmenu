@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AMBController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/prueba', [AMBController::class, 'prueba']);
+
+Route::get('/get', [AMBController::class, 'altaCategoria']);
