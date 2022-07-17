@@ -83,8 +83,16 @@ class AMBController extends Controller
             $item = new Item();
             $item->nombre = $req->input('nombre');
             $item->descripcion = $req->input('descripcion');
+            
             $item->es_veggie = $req->input('es_veggie');
             $item->es_vegan = $req->input('es_vegan');
+
+            if($req->input('es_veggie') == null){
+                $item->es_veggie = false;
+            }
+            if($req->input('es_vegan') == null){
+                $item->es_vegan = false;
+            }
             $item->precio = $req->input('precio');
             $item->imagen = 'TODO'; // TODO
             $item->orden = $orden;
