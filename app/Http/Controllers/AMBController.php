@@ -97,7 +97,7 @@ class AMBController extends Controller
                 $item->es_vegan = 0;
             }
             $item->precio = $req->input('precio');
-            $item->imagen = 'TODO'; // TODO
+            $item->imagen = 'ok'; // TODO ver que hacer con este campo
             $item->orden = $orden;
             $item->categoria_id = $req->input('categoria_id');
 
@@ -128,9 +128,14 @@ class AMBController extends Controller
             $item->es_veggie = $req->input('es_veggie');
             $item->es_vegan = $req->input('es_vegan');
             $item->precio = $req->input('precio');
-            $item->imagen = 'TODO'; // TODO
             $item->categoria_id = $req->input('categoria_id');
 
+
+            if($req->hasFile('imagen')){
+                $file = $req->file('imagen')->storeAs('', 'imagenID' . $item->id . '.jpg', 'images');
+            }
+            
+           
             $item->save();
 
             return response()->json([
