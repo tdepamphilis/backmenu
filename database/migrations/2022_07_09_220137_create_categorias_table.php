@@ -27,8 +27,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 50);
             $table->string('descripcion', 100)->nullable();
-            $table->boolean('es_veggie')->default(false);
-            $table->boolean('es_vegan')->default(false);
+            $table->boolean('es_veggie')->default(0);
+            $table->boolean('es_vegan')->default(0);
             $table->float('precio', 7, 2);
             $table->string('imagen', 250);
             $table->integer('orden');
