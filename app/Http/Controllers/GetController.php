@@ -32,9 +32,9 @@ class GetController extends Controller
         }
     }
 
-    public function getImage($id){
+    public function getImage($r,$id){
 
-        //   $file = Storage::disk('images')->get());
+        //  unused variable r para randomizar las calls y bypasear la cache de navegador
         try {
             
             $headers = [

@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // GETS
 Route::get('/categorias', [GetController::class, 'getCategorias']);
 Route::post('/items', [GetController::class, 'getItems']);
-Route::get('/image/{id}', [GetController::class, 'getImage']);
+Route::get('/image/{r}/{id}', [GetController::class, 'getImage']);
 
 
 // ABM CATEGORIAS
