@@ -148,7 +148,6 @@ class AMBController extends Controller
         }
     }
 
-
     public function bajaItem(Request $req)
     {
         try {
@@ -163,4 +162,59 @@ class AMBController extends Controller
             ]);
         }
     }
+
+
+    public function changeOrder(Request $req){
+
+        try {   
+            $item = Item::where('id', $req->input('id'))->first();
+            $items = Item::where('categoria_id', $item->categoria_id)->get();
+            $orden = $req->input('orden');
+
+            if($item->orden < $orden){
+                foreach ($items as $key => $i) {       
+                    if($i->id != $req->input('id')){
+                        if($i->orden <= $orden && $i->orden > $item->orden){
+                            $i->orden -- ;
+                        }
+                    } else {
+                        $i->orden = $orden;
+                    }
+                }
+            } else if ($item->orden > $orden){
+                foreach ($items as $key => $i) {
+                    if($i->id != $req->input('id')){
+                        if($i->orden >= $orden && $i->orden < $item->orden){
+                            $i->orden ++;
+                        }
+                    } else {
+                        $i->orden = $orden;
+                    }
+                }
+            }
+
+
+            foreach ($items as $key => $i) {
+                $i->save();
+            }
+
+
+      
+            return response()->json([
+                'sorted' => $items
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => $th,
+            ]);
+        }       
+
+    }
+
+
+
+
+
+
+
 }

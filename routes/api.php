@@ -35,4 +35,4 @@ Route::post('/eliminar-categoria', [AMBController::class, 'bajaCategoria']);
 Route::post('/alta-item', [AMBController::class, 'altaItem']);
 Route::post('/modificar-item', [AMBController::class, 'modificarItem']);
 Route::post('/eliminar-item', [AMBController::class, 'bajaItem']);
-
+Route::post('/reorganizar-item', [AMBController::class, 'changeOrder']);
