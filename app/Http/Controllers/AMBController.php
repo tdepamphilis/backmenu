@@ -152,7 +152,19 @@ class AMBController extends Controller
     {
         try {
             $id = $req->input('id');
+
+            $deleted = Item::where('id', $id)->first();
+            $deletedOrder = $deleted->orden;
+            $deletedCat = $deleted->categoria_id;
+
             Item::where('id', $id)->delete();
+
+            $others = Item::where('orden', '>', $deletedOrder)->where('categoria_id', $deletedCat)->get();
+            foreach ($others as $key => $other) {
+                $other->orden --;
+                $other->save();
+            }
+
             return response()->json([
                 'status' => 'ok',
             ]);
