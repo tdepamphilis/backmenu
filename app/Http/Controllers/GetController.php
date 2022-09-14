@@ -11,7 +11,13 @@ class GetController extends Controller
 {
     public function getCategorias()
     {
-        return Categoria::where('activo', true)->get();
+        return Categoria::where('activo', true)
+                            ->with('items')
+                            ->get();
+
+
+
+
     }
 
     public function getItems(Request $req)
